@@ -1,0 +1,93 @@
+pipeline { 
+
+    agent any 
+
+  
+
+    stages { 
+
+        stage('Checkout') { 
+
+            steps { 
+
+                checkout([$class: 'GitSCM',  
+
+                          branches: [[name: '*/main'], [name: '*/app'], [name: '*/views']], 
+
+                          doGenerateSubmoduleConfigurations: false,  
+
+                          extensions: [],  
+
+                          submoduleCfg: [],  
+
+                          userRemoteConfigs: [[url: 'https://github.com/bouzeras/projetICFinal.git']]]) 
+
+            } 
+
+        } 
+
+         
+
+        stage('Build') { 
+
+            steps { 
+
+                sh 'pip install -r requirements.txt' // Installe les dépendances 
+
+            } 
+
+        } 
+
+         
+
+        stage('Test') { 
+
+            steps { 
+
+                sh 'python -m unittest discover tests' // Lance les tests unitaires 
+
+            } 
+
+        } 
+
+         
+
+        stage('Deploy') { 
+
+            when { 
+
+                branch 'main' 
+
+            } 
+
+            steps { 
+
+                sh 'python app.py &' // Démarre l'application Flask en arrière-plan 
+
+            } 
+
+        } 
+
+    } 
+
+     
+
+    post { 
+
+        always { 
+
+            script { 
+
+                if (env.BRANCH_NAME == 'main' && currentBuild.result == 'SUCCESS') { 
+
+                    sh 'python app.py &' 
+
+                } 
+
+            } 
+
+        } 
+
+    } 
+
+} 
