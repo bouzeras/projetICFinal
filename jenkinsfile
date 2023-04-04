@@ -28,11 +28,11 @@ pipeline {
 
          
 
-        stage('Build') { 
+        stage('InstallDependancy') { 
 
             steps { 
 
-                sh 'pip install -r requirements.txt' // Installe les dépendances 
+                bat 'pip install -r requirements.txt' // Installe les dépendances 
 
             } 
 
