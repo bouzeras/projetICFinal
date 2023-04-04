@@ -44,7 +44,7 @@ pipeline {
 
             steps { 
 
-                sh 'python -m unittest discover tests' // Lance les tests unitaires 
+                bat 'python -m unittest discover tests' // Lance les tests unitaires 
 
             } 
 
@@ -62,7 +62,7 @@ pipeline {
 
             steps { 
 
-                sh 'python app.py &' // Démarre l'application Flask en arrière-plan 
+                bat 'python app.py &' // Démarre l'application Flask en arrière-plan 
 
             } 
 
@@ -80,7 +80,7 @@ pipeline {
 
                 if (env.BRANCH_NAME == 'main' && currentBuild.result == 'SUCCESS') { 
 
-                    sh 'python app.py &' 
+                    bat 'python app.py &' 
 
                 } 
 
