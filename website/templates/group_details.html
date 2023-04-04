@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ group.name }}</h1>
+    <p>Membres:</p>
+    <ul>
+    {% for user in group.users %}
+        <li>{{ user.user_name }}</li>
+    {% endfor %}
+    </ul>
+    <form method="POST">
+        <input type="hidden" name="group_id" value="{{ group.id }}">
+        <input type="submit" class="btn btn-danger" value="Quitter le groupe">
+    </form>
+{% endblock %}

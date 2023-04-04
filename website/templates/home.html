@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+{% block content %}
+<h1 align="center">Choix du groupe</h1>
+<ul class="list-group list-group-flush" id="groupe">
+    <!--
+    {% for groupe in user.groupe%}
+
+    <li class="list-group-item"> {{groupe.data}}
+        <button type="button" class="close" onclick="deleteNote({{groupe.id}})">
+       <span aria-hidden="true">&times;></span>
+        </button>
+    </li> 
+    <li class="list-group-item">
+        <a href="/groupe/{{groupe.id}}">{{groupe.data}}</a>
+    </li>
+    {% endfor %}
+</ul>
+-->
+<form method="post">
+    <div class="form-group">
+        <label for="groupe">Groupe</label>
+        <input type="text" class="form-control" id="groupe" name="groupe" placeholder="Enter groupe">
+        <small id="groupeHelp" class="form-text text-muted">Entrez le numéro du groupe</small>
+    </div>
+    <div class="form-group">
+        <label for="username">Identifiant</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+        <small id="passwordHelp" class="form-text text-muted">Entrez l'identifiant de la personne à ajouter</small>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+    </div>
+
+</form>
+{% endblock %}
+
+
+

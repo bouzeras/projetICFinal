@@ -1,0 +1,17 @@
+{% extends "base.html" %} 
+{% block title %}
+{{ groupe.data }}
+{% endblock %}
+
+{% block content %}
+<h1 align="center">Groupe {{ groupe.data }}</h1>
+
+<h2>Membres du groupe:</h2>
+<ul>
+{% for member in group_members %}
+    <li>{{ member.user.username }}</li>
+{% empty %}
+    <li>Aucun membre pour l'instant.</li>
+{% endfor %}
+</ul>
+{% endblock %}
